@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Solari intern challenge work by Moaz Essam, a terminal-themed case study in right-sizing GitHub Actions jobs with evidence.">
+    <title>solari / right-size with evidence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/site.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="js/site.js" defer></script>
+  </head>
+  <body>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="wordmark" href="index.html" aria-label="Solari home"><span class="wordmark-mark">▮</span> SOLARI <span class="wordmark-slash">///</span></a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#curve">curve</a>
+        <a href="#how-it-works">method</a>
+        <a href="#findings">findings</a>
+        <a href="#install">install</a>
+        <a class="nav-github" href="https://github.com/moazessam376-dev/solari-ci" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+      <span class="header-status"><span class="status-dot"></span> live evidence</span>
+    </header>
+
+    <main>
+      <section class="hero section-shell" id="top" aria-labelledby="hero-title">
+        <div class="hero-intro reveal">
+          <p class="eyebrow"><span class="eyebrow-mark">▸</span> MOAZ ESSAM / SOLARI INTERN CHALLENGE</p>
+          <h1 id="hero-title">Right-size your GitHub Actions job. <span>With evidence.</span></h1>
+          <p class="hero-subhead">solci runs your job on Solari microVMs at 1, 2, 4 and 8 vCPU and hands you the speed-vs-cost curve.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/moazessam376-dev/solari-ci" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a class="button button-quiet" href="#install">Install <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+
+        <div class="terminal-window reveal" id="terminal-window" aria-label="Animated solci run terminal">
+          <div class="terminal-titlebar">
+            <div class="traffic-lights" aria-hidden="true"><span></span><span></span><span></span></div>
+            <span class="terminal-title">moaz@solari ~ %</span>
+            <button class="replay-button" id="replay-button" type="button"><span aria-hidden="true">↻</span> replay</button>
+          </div>
+          <div class="terminal-screen" aria-live="polite">
+            <div class="terminal-log-region">
+              <div class="terminal-command-line"><span class="terminal-prompt">moaz@solari ~ %</span> <span id="typed-command"></span><span class="cursor" aria-hidden="true"></span></div>
+              <div class="terminal-stream" id="terminal-stream">
+                <div class="terminal-line terminal-seq-line" data-delay="0"><span class="terminal-bullet">&gt;</span> 1 vCPU created</div>
+                <div class="terminal-line terminal-seq-line" data-delay="120"><span class="terminal-bullet">&gt;</span> cpu online</div>
+                <div class="terminal-line terminal-seq-line" data-delay="240"><span class="terminal-bullet">&gt;</span> npm ci 34.0s <span class="ok">ok</span></div>
+                <div class="terminal-line terminal-seq-line" data-delay="360"><span class="terminal-bullet">&gt;</span> npm run typecheck 23.7s <span class="ok">ok</span></div>
+                <div class="terminal-line terminal-seq-line" data-delay="480"><span class="terminal-bullet">&gt;</span> done</div>
+                <div class="terminal-line terminal-seq-line" data-delay="680"><span class="terminal-bullet">&gt;</span> 2 vCPU created</div>
+                <div class="terminal-line terminal-seq-line" data-delay="800"><span class="terminal-bullet">&gt;</span> cpu online</div>
+                <div class="terminal-line terminal-seq-line" data-delay="920"><span class="terminal-bullet">&gt;</span> npm ci 22.8s <span class="ok">ok</span></div>
+                <div class="terminal-line terminal-seq-line" data-delay="1040"><span class="terminal-bullet">&gt;</span> npm run typecheck 16.5s <span class="ok">ok</span></div>
+                <div class="terminal-line terminal-seq-line" data-delay="1160"><span class="terminal-bullet">&gt;</span> done</div>
+                <div class="terminal-line terminal-seq-line" data-delay="1360"><span class="terminal-bullet">&gt;</span> 4 vCPU created</div>
+                <div class="terminal-line terminal-seq-line" data-delay="1480"><span class="terminal-bullet">&gt;</span> cpu online</div>
+                <div class="terminal-line terminal-seq-line" data-delay="1600"><span class="terminal-bullet">&gt;</span> npm ci 20.6s <span class="ok">ok</span></div>
+                <div class="terminal-line terminal-seq-line" data-delay="1720"><span class="terminal-bullet">&gt;</span> npm run typecheck 13.9s <span class="ok">ok</span></div>
+                <div class="terminal-line terminal-seq-line" data-delay="1840"><span class="terminal-bullet">&gt;</span> done</div>
+              </div>
+
+              <div class="terminal-results terminal-hidden" id="terminal-results">
+                <div class="terminal-result-heading">RESULTS / moazessam376-dev/Gym-App / typecheck</div>
+                <div class="terminal-table-wrap">
+                  <table class="terminal-table">
+                    <thead><tr><th>size</th><th>total</th><th>solari/run</th><th>status</th></tr></thead>
+                    <tbody>
+                      <tr><td>1 vCPU</td><td>67.1 s</td><td>$0.0011</td><td class="ok">ok</td></tr>
+                      <tr><td>2 vCPU</td><td>48.5 s</td><td>$0.0012</td><td class="ok">ok</td></tr>
+                      <tr><td>4 vCPU</td><td>45.5 s</td><td>$0.0023</td><td class="ok">ok</td></tr>
+                      <tr class="baseline-row"><td>GitHub ubuntu-latest</td><td>39.0 s</td><td>$0.0100</td><td>baseline</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="terminal-recommendation"><span class="recommendation-label">RECOMMENDATION</span><span>Use 2 vCPU: 48 s for $0.0012 per run, within 10% of the 4 vCPU time (46 s) at 53% of its cost.</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-meta reveal">
+          <span><span class="meta-mark">▸</span> measured on Solari microVMs</span>
+          <span>one matrix cell</span>
+          <span>native Linux steps</span>
+        </div>
+      </section>
+
+      <section class="section-shell section-block curve-section" id="curve" aria-labelledby="curve-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span class="eyebrow-mark">▤</span> 01 / THE EVIDENCE</p>
+          <h2 id="curve-title">The curve</h2>
+          <p>I built solci around the question that actually changes a workflow: where does more CPU stop buying meaningful time?</p>
+        </div>
+
+        <div class="curve-layout">
+          <figure class="curve-chart panel reveal" aria-labelledby="curve-caption">
+            <div class="chart-topline"><span>GYM-APP / TYPECHECK</span><span>lower is better</span></div>
+            <div class="chart-grid" aria-label="Job runtime bar chart">
+              <div class="chart-y-labels" aria-hidden="true"><span>70s</span><span>50s</span><span>30s</span><span>0s</span></div>
+              <div class="bars">
+                <div class="bar-group" data-value="67.1" data-cost="0.0011"><div class="bar-value">67.1 s</div><div class="bar-track"><div class="bar-fill"></div></div><div class="bar-label">1 vCPU</div><div class="bar-cost">$0.0011</div></div>
+                <div class="bar-group is-recommended" data-value="48.5" data-cost="0.0012"><div class="bar-value">48.5 s</div><div class="bar-track"><div class="bar-fill"></div></div><div class="bar-label">2 vCPU</div><div class="bar-cost">$0.0012</div><span class="bar-badge">recommended</span></div>
+                <div class="bar-group" data-value="45.5" data-cost="0.0023"><div class="bar-value">45.5 s</div><div class="bar-track"><div class="bar-fill"></div></div><div class="bar-label">4 vCPU</div><div class="bar-cost">$0.0023</div></div>
+                <div class="bar-group is-github" data-value="39.0" data-cost="0.0100"><div class="bar-value">39.0 s</div><div class="bar-track"><div class="bar-fill"></div></div><div class="bar-label">GitHub</div><div class="bar-cost">$0.0100</div></div>
+              </div>
+            </div>
+            <figcaption id="curve-caption"><span class="caption-index">01</span> The speed improvement is real, but 2 vCPU captures almost all of it at a fraction of the GitHub cost.</figcaption>
+          </figure>
+
+          <aside class="curve-note reveal">
+            <div class="note-kicker">THE SHORT VERSION</div>
+            <div class="big-stat"><span class="count-up" data-count="8" data-decimals="0">8</span><span>x</span></div>
+            <p>2 vCPU = 8x cheaper than the GitHub run for this job (0.0012 vs 0.0100).</p>
+            <div class="note-rule"></div>
+            <p class="note-small">That is the whole point of measuring the curve instead of guessing from a runner label.</p>
+          </aside>
+        </div>
+
+        <div class="crosstalk-callout reveal">
+          <span class="callout-mark">◎</span>
+          <div><strong>crosstalk's test job:</strong> 191 s at 1 vCPU, 197 s at 2 vCPU. Not CPU-bound. solci told me not to pay for more cores.</div>
+          <p>4 and 8 vCPU hit the repo's own flaky test, so those totals are not part of the recommendation.</p>
+        </div>
+      </section>
+
+      <section class="section-shell section-block inspired-section" id="inspired" aria-labelledby="inspired-title">
+        <div class="section-heading split-heading reveal">
+          <div><p class="eyebrow"><span class="eyebrow-mark">◎</span> 02 / THE FRAME</p><h2 id="inspired-title">Inspired by Blacksmith's <code>[code]smith</code> CI Tuning</h2></div>
+          <p class="heading-aside">I borrowed the question, then built the smallest honest instrument I could ship for the challenge.</p>
+        </div>
+        <div class="comparison-grid">
+          <article class="comparison-card reveal"><div class="card-number">01</div><p class="card-label">[code]smith does</p><h3>Turns run history into runner changes.</h3><p>It reads previous runs, right-sizes runners, and proposes workflow changes. That is the product idea that sent me down this path.</p></article>
+          <article class="comparison-card comparison-card-accent reveal"><div class="card-number">02</div><p class="card-label">solci does</p><h3>Measures the job on real microVMs.</h3><p>It runs one selected job at each requested size, records cost per run, and returns the findings behind the curve.</p></article>
+          <article class="comparison-card reveal"><div class="card-number">03</div><p class="card-label">solci does not do</p><h3>It is deliberately narrow.</h3><p>No PR bot. No Docker or service jobs. One matrix cell. Linux only. The report says what it could not measure.</p></article>
+        </div>
+      </section>
+
+      <section class="section-shell section-block pipeline-section" id="how-it-works" aria-labelledby="pipeline-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span class="eyebrow-mark">▸</span> 03 / THE RUNNER</p>
+          <h2 id="pipeline-title">How it works</h2>
+          <p>The runner is a small sequence of decisions. Each one stays visible in the report.</p>
+        </div>
+        <div class="pipeline" role="list">
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">01</div><div class="step-icon">gh</div><h3>fetch workflow via gh</h3><p>Read the workflow shape, job, runner label, history, and static findings.</p></article>
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">02</div><div class="step-icon">mx</div><h3>pick job and first matrix cell</h3><p>Choose one job and the first literal value for each matrix axis.</p></article>
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">03</div><div class="step-icon">vm</div><h3>boot a microVM per size</h3><p>1 s boot. vCPUs hot-plug in 1-15 s after boot, then the runner waits for cpu online.</p></article>
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">04</div><div class="step-icon">sh</div><h3>clone + shims</h3><p>Clone into <code>/work/repo</code>. Shim setup-node, setup-python, uv, pnpm, and bun.</p></article>
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">05</div><div class="step-icon">noh</div><h3>run each step natively</h3><p>Use nohup plus log polling around the 28 s exec cap for long steps.</p></article>
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">06</div><div class="step-icon">out</div><h3>curve, recommendation, findings</h3><p>Write the evidence, then delete every sandbox when the run is done.</p></article>
+        </div>
+      </section>
+
+      <section class="section-shell section-block findings-section" id="findings" aria-labelledby="findings-title">
+        <div class="section-heading split-heading reveal">
+          <div><p class="eyebrow"><span class="eyebrow-mark">▤</span> 04 / STATIC CHECKS</p><h2 id="findings-title">Findings</h2></div>
+          <p class="heading-aside">Ten codes make the report useful before a run starts. Severity is a signal, not a verdict.</p>
+        </div>
+        <div class="findings-grid">
+          <article class="finding-card reveal"><div><code>NO_CACHE_SETUP</code><span class="severity severity-medium">medium</span></div><p>A supported setup action does not enable dependency caching.</p></article>
+          <article class="finding-card reveal"><div><code>UNPINNED_ACTION</code><span class="severity severity-low">low</span></div><p>An action uses a mutable or missing ref.</p></article>
+          <article class="finding-card reveal"><div><code>NO_TIMEOUT</code><span class="severity severity-low">low</span></div><p>The job has no job-level timeout.</p></article>
+          <article class="finding-card reveal"><div><code>NO_CONCURRENCY</code><span class="severity severity-low">low</span></div><p>A pull-request workflow lacks a cancellation group.</p></article>
+          <article class="finding-card reveal"><div><code>FULL_CLONE</code><span class="severity severity-low">low</span></div><p>Checkout requests the complete repository history.</p></article>
+          <article class="finding-card reveal"><div><code>SLOW_INSTALL_HINT</code><span class="severity severity-info">info</span></div><p>pip install or non-lockfile npm install may be slower.</p></article>
+          <article class="finding-card reveal"><div><code>HIGH_FAILURE_RATE</code><span class="severity severity-high">high</span></div><p>The history baseline has a failure rate above 20%.</p></article>
+          <article class="finding-card reveal"><div><code>BIG_RUNNER</code><span class="severity severity-medium">medium</span></div><p>The job requests a large cores or vcpu runner.</p></article>
+          <article class="finding-card reveal"><div><code>SERVICES_UNSUPPORTED</code><span class="severity severity-info">info</span></div><p>The job uses Docker or service containers unavailable in Solari.</p></article>
+          <article class="finding-card reveal"><div><code>MATRIX_NOTE</code><span class="severity severity-info">info</span></div><p>Only the first matrix cell was measured.</p></article>
+        </div>
+      </section>
+
+      <section class="section-shell section-block learnings-section" id="learnings" aria-labelledby="learnings-title">
+        <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▮</span> 05 / FIELD NOTES</p><h2 id="learnings-title">What I learned about Solari</h2><p>These are the constraints that shaped the runner. They are also the reason the report stays plain about its limits.</p></div>
+        <div class="learning-grid">
+          <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>cpu/memMb</code><p>honored up to 16 vCPU / 16 GB</p></article>
+          <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>nproc --wait</code><p>vCPUs hot-plug 1-15 s after boot</p></article>
+          <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>exec</code><p>about 28 s wall-clock cap</p></article>
+          <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>echo $HOME</code><p>HOME unset in a fresh sandbox</p></article>
+          <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>df -h</code><p>about 2.2 GB disk available</p></article>
+          <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>docker version</code><p>no Docker</p></article>
+          <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>time sandbox</code><p>1 s sandbox boot</p></article>
+          <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>git clone</code><p>sub-second git clone</p></article>
+        </div>
+      </section>
+
+      <section class="section-shell section-block lab-section" id="lab" aria-labelledby="lab-title">
+        <div class="section-heading split-heading reveal">
+          <div><p class="eyebrow"><span class="eyebrow-mark">▸</span> 06 / THE REST OF THE LAB</p><h2 id="lab-title">The rest of the lab</h2></div>
+          <p class="heading-aside">Three more Solari experiments are real, useful, and still private beta.</p>
+        </div>
+        <div class="lab-grid">
+          <article class="lab-card reveal">
+            <div class="media-frame"><video autoplay muted loop playsinline preload="none" loading="lazy" poster="assets/solab-poster.jpg" aria-label="solari-lab terminal demo"><source src="assets/solab.mp4" type="video/mp4"></video><span class="media-tag">solab.mp4</span></div>
+            <div class="lab-card-body"><div class="lab-card-top"><code>solari-lab</code><span class="private-tag">private beta, ask me</span></div><p>doctor, bench, isolation, proxy, and cost CLI.</p><p>I built it to test what a browser session actually does.</p></div>
+          </article>
+          <article class="lab-card reveal">
+            <div class="media-frame"><video autoplay muted loop playsinline preload="none" loading="lazy" poster="assets/demo-poster.jpg" aria-label="solari-browser-use browser automation demo"><source src="assets/demo.mp4" type="video/mp4"></video><span class="media-tag">demo.mp4</span></div>
+            <div class="lab-card-body"><div class="lab-card-top"><code>solari-browser-use</code><span class="private-tag">private beta, ask me</span></div><p>browser-use provider on Solari cloud Chrome.</p><p>One constructor swap, then a real browser in the cloud.</p></div>
+          </article>
+          <article class="lab-card lab-card-no-media reveal">
+            <div class="no-media-art" aria-hidden="true"><span>playtest</span><span>mcp / webgl / report</span></div>
+            <div class="lab-card-body"><div class="lab-card-top"><code>solari-playtest</code><span class="private-tag">private beta, ask me</span></div><p>Sandbox build plus cloud Chrome playtesting agent with MCP tools.</p><p>It found a real UI bug in a three.js game with no hints.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-shell section-block install-section" id="install" aria-labelledby="install-title">
+        <div class="install-layout">
+          <div>
+            <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▸</span> 07 / GET STARTED</p><h2 id="install-title">Install</h2><p>Clone the repo, point it at your Solari and GitHub credentials, then ask one job for its curve.</p></div>
+            <div class="command-list reveal">
+              <div class="command-row"><code>git clone https://github.com/moazessam376-dev/solari-ci &amp;&amp; cd solari-ci &amp;&amp; uv pip install -e .</code><button class="copy-button" type="button" data-copy="git clone https://github.com/moazessam376-dev/solari-ci && cd solari-ci && uv pip install -e .">copy</button></div>
+              <div class="command-row"><code>cp .env.example .env</code><button class="copy-button" type="button" data-copy="cp .env.example .env">copy</button></div>
+              <p class="command-note">Add <code>SOLARI_API_KEY</code> to <code>.env</code>.</p>
+              <div class="command-row"><code>export GITHUB_TOKEN=$(gh auth token)</code><button class="copy-button" type="button" data-copy="export GITHUB_TOKEN=$(gh auth token)">copy</button></div>
+              <div class="command-row"><code>solci doctor</code><button class="copy-button" type="button" data-copy="solci doctor">copy</button></div>
+              <div class="command-row command-row-run"><code>solci run owner/repo --job test --cpu 1,2,4,8</code><button class="copy-button" type="button" data-copy="solci run owner/repo --job test --cpu 1,2,4,8">copy</button></div>
+            </div>
+          </div>
+          <figure class="install-preview panel reveal"><div class="preview-label"><span>what it looks like</span><span>solci.gif</span></div><img src="assets/solci.gif" alt="Animated terminal output from solci showing a GitHub Actions job measurement"><figcaption>A report you can read in a terminal, Markdown, JSON, or a chart.</figcaption></figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer section-shell">
+      <p>Built for the Pinetree Research SWE intern challenge on Solari</p>
+      <div><a href="https://github.com/moazessam376-dev" target="_blank" rel="noreferrer">github.com/moazessam376-dev</a><span aria-hidden="true"> / </span><a href="https://www.getsolari.com" target="_blank" rel="noreferrer">getsolari.com</a></div>
+    </footer>
+  </body>
+</html>
