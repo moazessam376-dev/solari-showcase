@@ -119,7 +119,7 @@
           <aside class="curve-note reveal">
             <div class="note-kicker">THE SHORT VERSION</div>
             <div class="big-stat"><span class="count-up" data-count="8" data-decimals="0">8</span><span>x</span></div>
-            <p>2 vCPU = 8x cheaper than the GitHub run for this job (0.0012 vs 0.0100).</p>
+            <p>2 vCPU = 8x cheaper than the GitHub run for this job (0.0012 vs 0.0100). GitHub figure is the private-repo rate, billed per minute rounded up, plus the $0.002/min platform fee.</p>
             <div class="note-rule"></div>
             <p class="note-small">That is the whole point of measuring the curve instead of guessing from a runner label.</p>
           </aside>
@@ -128,7 +128,7 @@
         <div class="crosstalk-callout reveal">
           <span class="callout-mark">◎</span>
           <div><strong>crosstalk's test job:</strong> 191 s at 1 vCPU, 197 s at 2 vCPU. Not CPU-bound. solci told me not to pay for more cores.</div>
-          <p>4 and 8 vCPU hit the repo's own flaky test, so those totals are not part of the recommendation.</p>
+          <p>4 and 8 vCPU failed in the repo's own test suite, so those totals are not part of the recommendation.</p>
         </div>
       </section>
 
