@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="I built solci for the Solari intern challenge. It runs a job on Solari microVMs at 1, 2, 4 and 8 vCPU and shows the speed curve.">
-    <title>solari / right-size with evidence</title>
+    <title>solci / CI speed curves on Solari</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-    <meta property="og:title" content="solari / right-size with evidence">
+    <meta property="og:title" content="solci / CI speed curves on Solari">
     <meta property="og:description" content="I built solci. It runs a job on Solari microVMs at 1, 2, 4 and 8 vCPU and shows the speed curve.">
     <meta property="og:image" content="https://moazessam376-dev.github.io/solari-showcase/assets/gym-app.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -24,7 +24,7 @@
     <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header">
-      <a class="wordmark" href="index.html" aria-label="Solari home"><span class="wordmark-mark">▮</span> SOLARI <span class="wordmark-slash">///</span></a>
+      <a class="wordmark" href="index.html" aria-label="solci home"><span class="wordmark-mark">▮</span> SOLCI <span class="wordmark-slash">///</span></a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#curve">curve</a>
         <a href="#how-it-works">method</a>
@@ -33,15 +33,15 @@
         <a href="#install">install</a>
         <a class="nav-github" href="https://github.com/moazessam376-dev/solari-ci" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
-      <span class="header-status"><span class="status-dot"></span> live evidence</span>
+      <span class="header-status"><span class="status-dot"></span> real numbers</span>
     </header>
 
     <main>
       <section class="hero section-shell" id="top" aria-labelledby="hero-title">
         <div class="hero-intro reveal">
           <p class="eyebrow"><span class="eyebrow-mark">▸</span> MOAZ ESSAM / SOLARI INTERN CHALLENGE</p>
-          <h1 id="hero-title">Right-size your GitHub Actions job. <span>With evidence.</span></h1>
-          <p class="hero-subhead">I built solci for the Solari intern challenge. It runs a job on Solari microVMs at 1, 2, 4 and 8 vCPU and shows the speed curve, so I pick the size from numbers, not from a runner label.</p>
+          <h1 id="hero-title">Where does more CPU <span>stop buying time?</span></h1>
+          <p class="hero-subhead">That's the question I built solci to answer. It replays one GitHub Actions job on Solari microVMs at 1, 2, 4 and 8 vCPU and hands me the curve, so I pick a size from numbers instead of a runner label.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="https://github.com/moazessam376-dev/solari-ci" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
             <a class="button button-quiet" href="#install">Install <span aria-hidden="true">↓</span></a>
@@ -105,7 +105,7 @@
           <button type="button" data-terminal-command="solci doctor">solci doctor</button>
           <button type="button" data-terminal-command="solci inspect crosstalk">solci inspect crosstalk</button>
           <button type="button" data-terminal-command="solci run gym-app --cpu 1,2,4">solci run gym-app --cpu 1,2,4</button>
-          <button type="button" data-terminal-command="solci run crosstalk --cpu 1,2">solci run crosstalk --cpu 1,2</button>
+          <button type="button" data-terminal-command="solci run crosstalk --cpu 1,2,4,8">solci run crosstalk --cpu 1,2,4,8</button>
           <button type="button" data-terminal-command="solci agent gym-app --pr">solci agent gym-app --pr</button>
         </div>
 
@@ -120,7 +120,7 @@
         <div class="section-heading reveal">
           <p class="eyebrow"><span class="eyebrow-mark">▤</span> 01 / THE EVIDENCE</p>
           <h2 id="curve-title">The curve</h2>
-          <p>I built solci around the question I cared about: where does more CPU stop buying meaningful time?</p>
+          <p>For the Gym-App typecheck job the answer is two cores. The third and fourth buy three seconds between them.</p>
         </div>
 
         <div class="curve-layout">
@@ -135,7 +135,7 @@
                 <div class="bar-group is-github" data-value="39.0" data-cost="0.0100"><div class="bar-value">39.0 s</div><div class="bar-track"><div class="bar-fill"></div></div><div class="bar-label">GitHub</div><div class="bar-cost">$0.0100</div></div>
               </div>
             </div>
-            <figcaption id="curve-caption"><span class="caption-index">01</span> I measured a real speed improvement. 2 vCPU captures almost all of it at a fraction of the GitHub cost.</figcaption>
+            <figcaption id="curve-caption"><span class="caption-index">01</span> 2 vCPU captures almost all of the speedup, at a fraction of the GitHub cost.</figcaption>
           </figure>
 
           <aside class="curve-note reveal">
@@ -150,7 +150,7 @@
 
         <div class="crosstalk-callout reveal">
           <span class="callout-mark">◎</span>
-          <div><strong>crosstalk's test job:</strong> 191 s at 1 vCPU, 197 s at 2 vCPU. Not CPU-bound. solci told me not to pay for more cores.</div>
+          <div><strong>crosstalk, another repo of mine:</strong> its test job ran 191 s at 1 vCPU and 197 s at 2 vCPU. Not CPU-bound. solci told me not to pay for more cores.</div>
           <p>4 and 8 vCPU failed in the repo's own test suite, so those totals are not part of the recommendation.</p>
         </div>
       </section>
@@ -158,18 +158,18 @@
       <section class="section-shell section-block inspired-section" id="inspired" aria-labelledby="inspired-title">
         <div class="section-heading split-heading reveal">
           <div><p class="eyebrow"><span class="eyebrow-mark">◎</span> 02 / AGENT MODE</p><h2 id="inspired-title">Agent mode</h2></div>
-          <p class="heading-aside">A workflow change backed by measurements, ready for me to review.</p>
+          <p class="heading-aside">A workflow change backed by measurements, ready for a human to review.</p>
         </div>
-        <p class="agent-intro reveal">I built this agent to measure a job on Solari with <code>solci agent owner/repo --job typecheck --cpu 1,2,4 --pr</code>. It hands the evidence to Codex, with Gemini as fallback. The model proposes the smallest workflow change the numbers justify. It opens a pull request with the report and chart. It only edits the workflow file. It never merges. I merge the pull request.</p>
+        <p class="agent-intro reveal">I built this agent to measure a job and then propose only the change the numbers justify: <code>solci agent owner/repo --job typecheck --cpu 1,2,4 --pr</code>.</p>
         <div class="agent-flow" role="list">
           <article class="agent-step reveal" role="listitem"><div class="step-index">01</div><div class="step-icon">run</div><h3>measure</h3><p>solci runs the job at each requested vCPU size and records timing, cost, and findings.</p><code class="agent-step-evidence">67s / 48s / 45s at 1, 2, 4 vCPU</code></article>
           <article class="agent-step agent-step-accent reveal" role="listitem"><div class="step-index">02</div><div class="step-icon">ask</div><h3>propose</h3><p>solci hands the evidence to Codex, with Gemini as fallback. The model proposes the smallest workflow change the numbers justify.</p><code class="agent-step-evidence">chose 2 vCPU, added timeout-minutes: 15 and a concurrency group</code></article>
-          <article class="agent-step reveal" role="listitem"><div class="step-index">03</div><div class="step-icon">pr</div><h3>PR</h3><p>It opens a pull request with the report and chart. It only edits the workflow file. It never merges. I do.</p><code class="agent-step-evidence">Gym-App PR #111, opened by solci, merge is my call</code></article>
+          <article class="agent-step reveal" role="listitem"><div class="step-index">03</div><div class="step-icon">pr</div><h3>PR</h3><p>It opens a pull request with the report and chart. It only edits the workflow file. It never merges. You do.</p><code class="agent-step-evidence">Gym-App PR #111, opened by solci, merged only by a human</code></article>
         </div>
         <article class="agent-pr reveal" aria-label="Mock GitHub pull request">
           <div class="agent-pr-header"><span class="agent-pr-open">Open</span><span>solci opened this pull request</span></div>
           <h3><a href="https://github.com/moazessam376-dev/Gym-App/pull/111" target="_blank" rel="noreferrer">ci.yml: bound typecheck and cancel superseded runs</a></h3>
-          <div class="agent-pr-meta">moazessam376-dev/Gym-App &middot; typecheck &middot; proposed change</div>
+          <div class="agent-pr-meta">moazessam376-dev/Gym-App (private) &middot; typecheck &middot; proposed change</div>
           <pre class="agent-pr-diff"><code><span class="diff-context">@@ workflow top level</span>
 <span class="diff-added">+concurrency:</span>
 <span class="diff-added">+  group: ci-${{ github.ref }}</span>
@@ -177,7 +177,8 @@
 <span class="diff-context"> jobs:</span>
 <span class="diff-context">   typecheck:</span>
 <span class="diff-added">+    timeout-minutes: 15</span></code></pre>
-          <p class="agent-pr-rationale">15 minutes is safely above the 60 second p90. Superseded runs are cancelled given 35% historical failures.</p>
+          <p class="agent-pr-rationale">15 minutes is safely above the 57 second p90. Superseded runs are cancelled given 35% historical failures.</p>
+          <p class="agent-pr-rationale">Gym-App is my own private repo, so that link only opens for me. solci opened the same kind of pull request on <a href="https://github.com/moazessam376-dev/crosstalk/pull/43" target="_blank" rel="noreferrer">crosstalk #43</a>, which is public and open to read.</p>
         </article>
       </section>
 
@@ -185,7 +186,7 @@
         <div class="section-heading reveal">
           <p class="eyebrow"><span class="eyebrow-mark">▸</span> 03 / THE RUNNER</p>
           <h2 id="pipeline-title">How it works</h2>
-          <p>This is what happens when I run one job. Every step shows up in the report.</p>
+          <p>This is what happens when you run one job. Every step shows up in the report.</p>
         </div>
         <div class="pipeline" role="list">
           <article class="pipeline-step reveal" role="listitem"><div class="step-index">01</div><div class="step-icon">gh</div><h3>fetch workflow via gh</h3><p>Read the workflow shape, job, runner label, history, and static findings.</p></article>
@@ -234,7 +235,7 @@
       <section class="section-shell section-block lab-section" id="lab" aria-labelledby="lab-title">
         <div class="section-heading split-heading reveal">
           <div><p class="eyebrow"><span class="eyebrow-mark">▸</span> 06 / THE REST OF THE LAB</p><h2 id="lab-title">The rest of the lab</h2></div>
-          <p class="heading-aside">All three are open source. I built the first two on the way to solci, and the third became a solci flag.</p>
+          <p class="heading-aside">solari-lab and solari-playtest are open source and came before solci. The cloud Chrome work became a solci flag.</p>
         </div>
         <div class="lab-grid">
           <article class="lab-card reveal">
@@ -256,7 +257,7 @@
         <div class="section-heading reveal">
           <p class="eyebrow"><span class="eyebrow-mark">▸</span> 07 / EVERYTHING I BUILT</p>
           <h2 id="built-title">Everything I built</h2>
-          <p>Five repos and one pull request, all public. Each one is something I ran end to end, not a mock.</p>
+          <p>Five repos and two pull requests. I ran every one of them end to end.</p>
         </div>
         <div class="built-grid">
           <article class="built-card reveal">
@@ -265,9 +266,14 @@
             <code>68 tests, 4 commands: doctor, inspect, run, agent</code>
           </article>
           <article class="built-card reveal">
-            <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/Gym-App/pull/111" target="_blank" rel="noreferrer">Gym-App PR #111</a></h3><span class="private-tag open-tag">PR</span></div>
-            <p>The pull request solci agent opened on my own repo from the measured curve. Timeout and a concurrency group, nothing else.</p>
+            <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/Gym-App/pull/111" target="_blank" rel="noreferrer">Gym-App PR #111</a></h3><span class="private-tag open-tag">PR / private</span></div>
+            <p>The pull request solci agent opened on Gym-App, my own private repo, from the measured curve. Timeout and a concurrency group, nothing else. The link only opens for me, so the full diff is shown above.</p>
             <code>67s / 48s / 45s at 1, 2, 4 vCPU</code>
+          </article>
+          <article class="built-card reveal">
+            <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/crosstalk/pull/43" target="_blank" rel="noreferrer">crosstalk PR #43</a></h3><span class="private-tag open-tag">PR / public</span></div>
+            <p>The same thing on a public repo, so anyone can open it. solci measured the test job, found it was not CPU-bound, and proposed a job timeout and nothing else.</p>
+            <code>test job not CPU-bound, timeout only</code>
           </article>
           <article class="built-card reveal">
             <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/solci-browser-demo" target="_blank" rel="noreferrer">solci-browser-demo</a></h3><span class="private-tag open-tag">demo</span></div>

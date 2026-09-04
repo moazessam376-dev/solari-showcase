@@ -504,8 +504,11 @@ h1 span {
   margin-left: 5px;
 }
 
+/* fixed, and reparented to <body> in site.js: keeps the hidden capture input out of .terminal-screen's scroll box and away from transformed ancestors, so typing cannot scroll the page */
 .terminal-input {
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 1px;
   height: 1px;
   padding: 0;

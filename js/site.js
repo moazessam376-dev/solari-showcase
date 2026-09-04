@@ -128,7 +128,7 @@
     if (hint && !interactiveTerminalState.hintDismissed && !interactiveTerminalState.command) {
       hint.classList.remove("is-dismissed");
     }
-    if (focusInput && input) input.focus();
+    if (focusInput && input) input.focus({ preventScroll: true });
     scrollTerminalToBottom();
   }
 
@@ -192,7 +192,7 @@
         "  solci doctor",
         "  solci inspect crosstalk",
         "  solci run gym-app --cpu 1,2,4",
-        "  solci run crosstalk --cpu 1,2",
+        "  solci run crosstalk --cpu 1,2,4,8",
         "  solci agent gym-app --pr",
         "  clear"
       ];
@@ -245,7 +245,7 @@
       ];
     }
 
-    if (value === "solci run crosstalk --cpu 1,2") {
+    if (value === "solci run crosstalk --cpu 1,2,4,8") {
       return [
         "1 vCPU   total 191.5 s   solari/run $0.0030",
         "2 vCPU   total 197.5 s   solari/run $0.0050",
@@ -266,7 +266,7 @@
         " jobs:",
         "   typecheck:",
         "+    timeout-minutes: 15",
-        "15 minutes is safely above the 58 second p90; cancel superseded runs given 35% historical failures",
+        "15 minutes is safely above the 57 second p90; cancel superseded runs given 35% historical failures",
         "PR opened: (demo)"
       ];
     }
@@ -369,6 +369,11 @@
     var input = document.getElementById("terminal-input");
     var chips = document.querySelectorAll("[data-terminal-command]");
     if (!screen || !input) return;
+
+    // GSAP leaves a transform on .terminal-window, and a transformed ancestor becomes
+    // the containing block for position:fixed. Moving the capture input to <body>
+    // keeps it anchored to the viewport so typing can never scroll the page.
+    document.body.appendChild(input);
 
     screen.addEventListener("focus", function () {
       beginInteractiveTerminal(false);
