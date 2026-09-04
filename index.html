@@ -29,6 +29,7 @@
         <a href="#curve">curve</a>
         <a href="#how-it-works">method</a>
         <a href="#findings">findings</a>
+        <a href="#built">built</a>
         <a href="#install">install</a>
         <a class="nav-github" href="https://github.com/moazessam376-dev/solari-ci" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
@@ -251,10 +252,50 @@
         </div>
       </section>
 
+      <section class="section-shell section-block built-section" id="built" aria-labelledby="built-title">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span class="eyebrow-mark">▸</span> 07 / EVERYTHING I BUILT</p>
+          <h2 id="built-title">Everything I built</h2>
+          <p>Five repos and one pull request, all public. Each one is something I ran end to end, not a mock.</p>
+        </div>
+        <div class="built-grid">
+          <article class="built-card reveal">
+            <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/solari-ci" target="_blank" rel="noreferrer">solari-ci</a></h3><span class="private-tag open-tag">CLI</span></div>
+            <p>solci. Inspect a workflow, replay one job on Solari at 1, 2, 4 and 8 vCPU, get the curve and findings, and let a model open the PR.</p>
+            <code>68 tests, 4 commands: doctor, inspect, run, agent</code>
+          </article>
+          <article class="built-card reveal">
+            <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/Gym-App/pull/111" target="_blank" rel="noreferrer">Gym-App PR #111</a></h3><span class="private-tag open-tag">PR</span></div>
+            <p>The pull request solci agent opened on my own repo from the measured curve. Timeout and a concurrency group, nothing else.</p>
+            <code>67s / 48s / 45s at 1, 2, 4 vCPU</code>
+          </article>
+          <article class="built-card reveal">
+            <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/solci-browser-demo" target="_blank" rel="noreferrer">solci-browser-demo</a></h3><span class="private-tag open-tag">demo</span></div>
+            <p>A small Playwright repo I use to prove the cloud Chrome path. Two tests, one against the app's own localhost server through the sandbox preview URL.</p>
+            <code>2 passed, 1 browser session, 5.8s</code>
+          </article>
+          <article class="built-card reveal">
+            <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/solari-lab" target="_blank" rel="noreferrer">solari-lab</a></h3><span class="private-tag open-tag">CLI</span></div>
+            <p>Diagnostics for Solari sandboxes: doctor, bench, isolation, proxy and cost. This is where I learned the exec cap and the vCPU hot-plug delay.</p>
+            <code>solab doctor / bench / isolation / proxy / cost</code>
+          </article>
+          <article class="built-card reveal">
+            <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/solari-playtest" target="_blank" rel="noreferrer">solari-playtest</a></h3><span class="private-tag open-tag">agent</span></div>
+            <p>A playtesting agent with MCP tools. It builds a game in a sandbox, drives it in cloud Chrome, and writes a report. It found a real UI bug with no hints.</p>
+            <code>128 sequences, 8 browser sessions, 1 confirmed bug</code>
+          </article>
+          <article class="built-card reveal">
+            <div class="built-card-top"><h3><a href="https://github.com/moazessam376-dev/solari-showcase" target="_blank" rel="noreferrer">solari-showcase</a></h3><span class="private-tag open-tag">site</span></div>
+            <p>This page. Static HTML with GSAP, an interactive terminal, and the GIFs from each tool. Hosted on GitHub Pages.</p>
+            <code>no build step, works with JS off</code>
+          </article>
+        </div>
+      </section>
+
       <section class="section-shell section-block install-section" id="install" aria-labelledby="install-title">
         <div class="install-layout">
           <div>
-            <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▸</span> 07 / GET STARTED</p><h2 id="install-title">Install</h2><p>Clone the repo, add your Solari and GitHub credentials, then ask one job for its curve. Five commands.</p></div>
+            <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▸</span> 08 / GET STARTED</p><h2 id="install-title">Install</h2><p>Clone the repo, add your Solari and GitHub credentials, then ask one job for its curve. Five commands.</p></div>
             <div class="command-list reveal">
               <div class="command-row"><code>git clone https://github.com/moazessam376-dev/solari-ci &amp;&amp; cd solari-ci &amp;&amp; uv pip install -e .</code><button class="copy-button" type="button" data-copy="git clone https://github.com/moazessam376-dev/solari-ci && cd solari-ci && uv pip install -e .">copy</button></div>
               <div class="command-row"><code>cp .env.example .env</code><button class="copy-button" type="button" data-copy="cp .env.example .env">copy</button></div>
