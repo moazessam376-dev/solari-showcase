@@ -53,7 +53,7 @@
             <span class="terminal-title">moaz@solari ~ %</span>
             <button class="replay-button" id="replay-button" type="button"><span aria-hidden="true">↻</span> replay</button>
           </div>
-          <div class="terminal-screen" aria-live="polite">
+          <div class="terminal-screen" tabindex="0" aria-label="Interactive solci terminal, type help to begin" aria-live="polite">
             <div class="terminal-log-region">
               <div class="terminal-command-line"><span class="terminal-prompt">moaz@solari ~ %</span> <span id="typed-command"></span><span class="cursor" aria-hidden="true"></span></div>
               <div class="terminal-stream" id="terminal-stream">
@@ -89,8 +89,23 @@
                 </div>
                 <div class="terminal-recommendation"><span class="recommendation-label">RECOMMENDATION</span><span>Use 2 vCPU: 48 s for $0.0012 per run, within 10% of the 4 vCPU time (46 s) at 53% of its cost.</span></div>
               </div>
+
+              <div class="terminal-interactive" id="terminal-interactive">
+                <div class="terminal-interactive-hint" id="terminal-hint">click and type, try: help</div>
+                <div class="terminal-interactive-output" id="terminal-output"></div>
+                <div class="terminal-live-line"><span class="terminal-prompt">moaz@solari ~ %</span> <span id="terminal-live-command"></span><span class="cursor terminal-live-cursor" aria-hidden="true"></span></div>
+                <input class="terminal-input" id="terminal-input" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" tabindex="-1" aria-label="Solci command input">
+              </div>
             </div>
           </div>
+        </div>
+        <div class="terminal-command-chips" id="terminal-command-chips" aria-label="Tap to run solci commands">
+          <button type="button" data-terminal-command="help">help</button>
+          <button type="button" data-terminal-command="solci doctor">solci doctor</button>
+          <button type="button" data-terminal-command="solci inspect crosstalk">solci inspect crosstalk</button>
+          <button type="button" data-terminal-command="solci run gym-app --cpu 1,2,4">solci run gym-app --cpu 1,2,4</button>
+          <button type="button" data-terminal-command="solci run crosstalk --cpu 1,2">solci run crosstalk --cpu 1,2</button>
+          <button type="button" data-terminal-command="solci agent gym-app --pr">solci agent gym-app --pr</button>
         </div>
 
         <div class="hero-meta reveal">
@@ -124,8 +139,9 @@
 
           <aside class="curve-note reveal">
             <div class="note-kicker">THE SHORT VERSION</div>
-            <div class="big-stat"><span class="count-up" data-count="8" data-decimals="0">8</span><span>x</span></div>
-            <p>2 vCPU = 8x cheaper than the GitHub run for this job (0.0012 vs 0.0100). GitHub figure is the private-repo rate, billed per minute rounded up, plus the $0.002/min platform fee.</p>
+            <div class="big-stat"><span class="count-up" data-count="1.4" data-decimals="1">1.4</span><span>x</span></div>
+            <p class="stat-label">faster at 2 vCPU, 1.5x at 4, for the Gym-App typecheck job</p>
+            <p>The question solci answers is whether your job is CPU-bound and which size is worth it. Cost only matters if you pay for minutes: at the private-repo rate, GitHub billed this job $0.010 per run (one minute, rounded up, plus the $0.002 platform fee) and 2 vCPU on Solari was $0.0012. Public repos are free on GitHub, so for those, read the time bars and ignore the dollars.</p>
             <div class="note-rule"></div>
             <p class="note-small">That is the whole point of measuring the curve instead of guessing from a runner label.</p>
           </aside>
@@ -140,14 +156,28 @@
 
       <section class="section-shell section-block inspired-section" id="inspired" aria-labelledby="inspired-title">
         <div class="section-heading split-heading reveal">
-          <div><p class="eyebrow"><span class="eyebrow-mark">◎</span> 02 / THE FRAME</p><h2 id="inspired-title">Inspired by Blacksmith's <code>[code]smith</code> CI Tuning</h2></div>
-          <p class="heading-aside">I borrowed the question, then built the smallest honest instrument I could ship for the challenge.</p>
+          <div><p class="eyebrow"><span class="eyebrow-mark">◎</span> 02 / AGENT MODE</p><h2 id="inspired-title">Agent mode</h2></div>
+          <p class="heading-aside">A measured workflow change, prepared for a human to review.</p>
         </div>
-        <div class="comparison-grid">
-          <article class="comparison-card reveal"><div class="card-number">01</div><p class="card-label">[code]smith does</p><h3>Turns run history into runner changes.</h3><p>It reads previous runs, right-sizes runners, and proposes workflow changes. That is the product idea that sent me down this path.</p></article>
-          <article class="comparison-card comparison-card-accent reveal"><div class="card-number">02</div><p class="card-label">solci does</p><h3>Measures the job on real microVMs.</h3><p>It runs one selected job at each requested size, records cost per run, and returns the findings behind the curve.</p></article>
-          <article class="comparison-card reveal"><div class="card-number">03</div><p class="card-label">solci does not do</p><h3>It is deliberately narrow.</h3><p>No PR bot. No Docker or service jobs. One matrix cell. Linux only. The report says what it could not measure.</p></article>
+        <p class="agent-intro reveal"><code>solci agent owner/repo --job typecheck --cpu 1,2,4 --pr</code> measures on Solari, hands the evidence to a model, Codex by default and Gemini as fallback, then the model proposes the smallest workflow change justified by the numbers and opens a pull request with the report and chart. The human merges.</p>
+        <div class="agent-flow" role="list">
+          <article class="agent-step reveal" role="listitem"><div class="step-index">01</div><div class="step-icon">run</div><h3>measure</h3><p>Run the selected job at each requested vCPU size and capture timing, cost, and findings.</p></article>
+          <article class="agent-step agent-step-accent reveal" role="listitem"><div class="step-index">02</div><div class="step-icon">ask</div><h3>propose</h3><p>Give the evidence to Codex, with Gemini as fallback, and ask for the smallest justified workflow change.</p></article>
+          <article class="agent-step reveal" role="listitem"><div class="step-index">03</div><div class="step-icon">pr</div><h3>PR</h3><p>Open a pull request with the report and chart. It only edits the workflow file. It never merges.</p></article>
         </div>
+        <article class="agent-pr reveal" aria-label="Mock GitHub pull request">
+          <div class="agent-pr-header"><span class="agent-pr-open">Open</span><span>solci-bot opened this pull request</span></div>
+          <h3>ci.yml: bound typecheck and cancel superseded runs</h3>
+          <div class="agent-pr-meta">moazessam376-dev/Gym-App &middot; typecheck &middot; proposed change</div>
+          <pre class="agent-pr-diff"><code><span class="diff-context">@@ workflow top level</span>
+<span class="diff-added">+concurrency:</span>
+<span class="diff-added">+  group: ci-${{ github.ref }}</span>
+<span class="diff-added">+  cancel-in-progress: true</span>
+<span class="diff-context"> jobs:</span>
+<span class="diff-context">   typecheck:</span>
+<span class="diff-added">+    timeout-minutes: 15</span></code></pre>
+          <p class="agent-pr-rationale">15 minutes is safely above the 58 second p90; cancel superseded runs given 35% historical failures</p>
+        </article>
       </section>
 
       <section class="section-shell section-block pipeline-section" id="how-it-works" aria-labelledby="pipeline-title">
@@ -202,20 +232,20 @@
       <section class="section-shell section-block lab-section" id="lab" aria-labelledby="lab-title">
         <div class="section-heading split-heading reveal">
           <div><p class="eyebrow"><span class="eyebrow-mark">▸</span> 06 / THE REST OF THE LAB</p><h2 id="lab-title">The rest of the lab</h2></div>
-          <p class="heading-aside">Three more Solari experiments are real, useful, and still private beta.</p>
+          <p class="heading-aside">Two of these three Solari experiments are open source. The third is next up.</p>
         </div>
         <div class="lab-grid">
           <article class="lab-card reveal">
             <div class="media-frame"><video autoplay muted loop playsinline preload="none" loading="lazy" poster="assets/solab-poster.jpg" aria-label="solari-lab terminal demo"><source src="assets/solab.mp4" type="video/mp4"></video><span class="media-tag">solab.mp4</span></div>
-            <div class="lab-card-body"><div class="lab-card-top"><code>solari-lab</code><span class="private-tag">private beta, ask me</span></div><p>doctor, bench, isolation, proxy, and cost CLI.</p><p>I built it to test what a browser session actually does.</p></div>
+            <div class="lab-card-body"><div class="lab-card-top"><a href="https://github.com/moazessam376-dev/solari-lab" target="_blank" rel="noreferrer"><code>solari-lab</code></a><span class="private-tag open-tag">open source</span></div><p>doctor, bench, isolation, proxy, and cost CLI.</p><p>I built it to test what a browser session actually does.</p></div>
           </article>
           <article class="lab-card reveal">
             <div class="media-frame"><video autoplay muted loop playsinline preload="none" loading="lazy" poster="assets/demo-poster.jpg" aria-label="solari-browser-use browser automation demo"><source src="assets/demo.mp4" type="video/mp4"></video><span class="media-tag">demo.mp4</span></div>
-            <div class="lab-card-body"><div class="lab-card-top"><code>solari-browser-use</code><span class="private-tag">private beta, ask me</span></div><p>browser-use provider on Solari cloud Chrome.</p><p>One constructor swap, then a real browser in the cloud.</p></div>
+            <div class="lab-card-body"><div class="lab-card-top"><h3 class="lab-card-title">Cloud Chrome for browser jobs</h3><span class="private-tag next-tag">next up</span></div><p>Playwright and browser-use test jobs will run their browser on Solari cloud Chrome over CDP, with no change to the repo. solci injects the endpoint into the job. In progress.</p></div>
           </article>
           <article class="lab-card lab-card-no-media reveal">
             <div class="no-media-art" aria-hidden="true"><span>playtest</span><span>mcp / webgl / report</span></div>
-            <div class="lab-card-body"><div class="lab-card-top"><code>solari-playtest</code><span class="private-tag">private beta, ask me</span></div><p>Sandbox build plus cloud Chrome playtesting agent with MCP tools.</p><p>It found a real UI bug in a three.js game with no hints.</p></div>
+            <div class="lab-card-body"><div class="lab-card-top"><a href="https://github.com/moazessam376-dev/solari-playtest" target="_blank" rel="noreferrer"><code>solari-playtest</code></a><span class="private-tag open-tag">open source</span></div><p>Sandbox build plus cloud Chrome playtesting agent with MCP tools.</p><p>It found a real UI bug in a three.js game with no hints.</p></div>
           </article>
         </div>
       </section>
