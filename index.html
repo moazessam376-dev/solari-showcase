@@ -119,7 +119,7 @@
         <div class="section-heading reveal">
           <p class="eyebrow"><span class="eyebrow-mark">▤</span> 01 / THE EVIDENCE</p>
           <h2 id="curve-title">The curve</h2>
-          <p>I built solci around the question that actually changes a workflow: where does more CPU stop buying meaningful time?</p>
+          <p>I built solci around the question I cared about: where does more CPU stop buying meaningful time?</p>
         </div>
 
         <div class="curve-layout">
@@ -176,7 +176,7 @@
 <span class="diff-context"> jobs:</span>
 <span class="diff-context">   typecheck:</span>
 <span class="diff-added">+    timeout-minutes: 15</span></code></pre>
-          <p class="agent-pr-rationale">15 minutes is safely above the 58 second p90. Superseded runs are cancelled given 35% historical failures.</p>
+          <p class="agent-pr-rationale">15 minutes is safely above the 60 second p90. Superseded runs are cancelled given 35% historical failures.</p>
         </article>
       </section>
 
@@ -199,7 +199,7 @@
       <section class="section-shell section-block findings-section" id="findings" aria-labelledby="findings-title">
         <div class="section-heading split-heading reveal">
           <div><p class="eyebrow"><span class="eyebrow-mark">▤</span> 04 / STATIC CHECKS</p><h2 id="findings-title">Findings</h2></div>
-          <p class="heading-aside">Ten checks run before any sandbox boots. Severity is a hint about what to fix first.</p>
+          <p class="heading-aside">Eleven checks run before any sandbox boots. Severity is a hint about what to fix first.</p>
         </div>
         <div class="findings-grid">
           <article class="finding-card reveal"><div><code>NO_CACHE_SETUP</code><span class="severity severity-medium">medium</span></div><p>A supported setup action has no dependency caching.</p></article>
@@ -212,6 +212,7 @@
           <article class="finding-card reveal"><div><code>BIG_RUNNER</code><span class="severity severity-medium">medium</span></div><p>The job requests a large cores or vcpu runner.</p></article>
           <article class="finding-card reveal"><div><code>SERVICES_UNSUPPORTED</code><span class="severity severity-info">info</span></div><p>The job uses Docker or service containers, which Solari does not have.</p></article>
           <article class="finding-card reveal"><div><code>MATRIX_NOTE</code><span class="severity severity-info">info</span></div><p>Only the first matrix cell was measured.</p></article>
+          <article class="finding-card reveal"><div><code>BROWSER_JOB</code><span class="severity severity-info">info</span></div><p>Browser tests install a local browser. Use --cloud-browser for Solari cloud Chrome.</p></article>
         </div>
       </section>
 
@@ -241,7 +242,7 @@
           </article>
           <article class="lab-card reveal">
             <div class="media-frame"><video autoplay muted loop playsinline preload="none" loading="lazy" poster="assets/demo-poster.jpg" aria-label="solari-browser-use browser automation demo"><source src="assets/demo.mp4" type="video/mp4"></video><span class="media-tag">demo.mp4</span></div>
-            <div class="lab-card-body"><div class="lab-card-top"><h3 class="lab-card-title"><a href="https://github.com/moazessam376-dev/solari-ci#cloud-chrome-for-browser-jobs" target="_blank" rel="noreferrer">Cloud Chrome for browser jobs</a></h3><span class="private-tag open-tag">shipped</span></div><p>solci run --cloud-browser runs a job's Playwright, Puppeteer or browser-use steps in Solari cloud Chrome over CDP. No change to the repo. I injected the endpoint into the job. Two Playwright tests pass end to end, including one against the app's own localhost server through the sandbox preview URL. Chromium only for now.</p></div>
+            <div class="lab-card-body"><div class="lab-card-top"><h3 class="lab-card-title"><a href="https://github.com/moazessam376-dev/solari-ci#cloud-chrome-for-browser-jobs" target="_blank" rel="noreferrer">Cloud Chrome for browser jobs</a></h3><span class="private-tag open-tag">shipped</span></div><p>solci run --cloud-browser runs a job's Playwright, Puppeteer or browser-use steps in Solari cloud Chrome over CDP. No change to the repo. solci injects the endpoint into the job. Two Playwright tests pass end to end, including one against the app's own localhost server through the sandbox preview URL. Chromium only for now.</p></div>
           </article>
           <article class="lab-card lab-card-no-media reveal">
             <div class="no-media-art" aria-hidden="true"><span>playtest</span><span>mcp / webgl / report</span></div>
@@ -253,7 +254,7 @@
       <section class="section-shell section-block install-section" id="install" aria-labelledby="install-title">
         <div class="install-layout">
           <div>
-            <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▸</span> 07 / GET STARTED</p><h2 id="install-title">Install</h2><p>Clone the repo, add your Solari and GitHub credentials, then ask one job for its curve. Four commands.</p></div>
+            <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▸</span> 07 / GET STARTED</p><h2 id="install-title">Install</h2><p>Clone the repo, add your Solari and GitHub credentials, then ask one job for its curve. Five commands.</p></div>
             <div class="command-list reveal">
               <div class="command-row"><code>git clone https://github.com/moazessam376-dev/solari-ci &amp;&amp; cd solari-ci &amp;&amp; uv pip install -e .</code><button class="copy-button" type="button" data-copy="git clone https://github.com/moazessam376-dev/solari-ci && cd solari-ci && uv pip install -e .">copy</button></div>
               <div class="command-row"><code>cp .env.example .env</code><button class="copy-button" type="button" data-copy="cp .env.example .env">copy</button></div>
