@@ -979,6 +979,9 @@ h1 span {
 .agent-flow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  max-width: none;
+  margin-right: auto;
+  margin-left: auto;
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
 }
@@ -1025,9 +1028,21 @@ h1 span {
   line-height: 1.55;
 }
 
+.agent-step-evidence {
+  display: block;
+  max-width: 310px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.5;
+}
+
 .agent-pr {
-  max-width: 900px;
+  max-width: none;
   margin-top: 18px;
+  margin-right: auto;
+  margin-left: auto;
   padding: 21px 23px 22px;
   border: 1px solid rgba(139, 148, 158, 0.35);
   background: #161b22;
@@ -1039,7 +1054,7 @@ h1 span {
   align-items: center;
   gap: 9px;
   margin-bottom: 19px;
-  color: #8b949e;
+  color: var(--muted);
   font-family: var(--mono);
   font-size: 10px;
 }
@@ -1060,7 +1075,7 @@ h1 span {
 
 .agent-pr-meta {
   margin-bottom: 18px;
-  color: #8b949e;
+  color: var(--muted);
   font-family: var(--mono);
   font-size: 10px;
 }
@@ -1079,7 +1094,7 @@ h1 span {
 }
 
 .diff-context {
-  color: #8b949e;
+  color: var(--muted);
 }
 
 .diff-added {
@@ -1093,7 +1108,7 @@ h1 span {
 .agent-pr-rationale {
   max-width: 760px;
   margin: 15px 0 0;
-  color: #8b949e;
+  color: var(--muted);
   font-family: var(--mono);
   font-size: 11px;
   line-height: 1.6;

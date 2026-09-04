@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Solari intern challenge work by Moaz Essam, a terminal-themed case study in right-sizing GitHub Actions jobs with evidence.">
+    <meta name="description" content="I built solci for the Solari intern challenge. It runs a job on Solari microVMs at 1, 2, 4 and 8 vCPU and shows the speed curve.">
     <title>solari / right-size with evidence</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <meta property="og:title" content="solari / right-size with evidence">
-    <meta property="og:description" content="solci runs your job on Solari microVMs at 1, 2, 4 and 8 vCPU and hands you the speed-vs-cost curve.">
+    <meta property="og:description" content="I built solci. It runs a job on Solari microVMs at 1, 2, 4 and 8 vCPU and shows the speed curve.">
     <meta property="og:image" content="https://moazessam376-dev.github.io/solari-showcase/assets/gym-app.png">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,7 @@
         <div class="hero-intro reveal">
           <p class="eyebrow"><span class="eyebrow-mark">▸</span> MOAZ ESSAM / SOLARI INTERN CHALLENGE</p>
           <h1 id="hero-title">Right-size your GitHub Actions job. <span>With evidence.</span></h1>
-          <p class="hero-subhead">solci runs your job on Solari microVMs at 1, 2, 4 and 8 vCPU and hands you the speed-vs-cost curve.</p>
+          <p class="hero-subhead">I built solci for the Solari intern challenge. It runs a job on Solari microVMs at 1, 2, 4 and 8 vCPU and shows the speed curve, so I pick the size from numbers, not from a runner label.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="https://github.com/moazessam376-dev/solari-ci" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
             <a class="button button-quiet" href="#install">Install <span aria-hidden="true">↓</span></a>
@@ -134,16 +134,16 @@
                 <div class="bar-group is-github" data-value="39.0" data-cost="0.0100"><div class="bar-value">39.0 s</div><div class="bar-track"><div class="bar-fill"></div></div><div class="bar-label">GitHub</div><div class="bar-cost">$0.0100</div></div>
               </div>
             </div>
-            <figcaption id="curve-caption"><span class="caption-index">01</span> The speed improvement is real, but 2 vCPU captures almost all of it at a fraction of the GitHub cost.</figcaption>
+            <figcaption id="curve-caption"><span class="caption-index">01</span> I measured a real speed improvement. 2 vCPU captures almost all of it at a fraction of the GitHub cost.</figcaption>
           </figure>
 
           <aside class="curve-note reveal">
             <div class="note-kicker">THE SHORT VERSION</div>
             <div class="big-stat"><span class="count-up" data-count="1.4" data-decimals="1">1.4</span><span>x</span></div>
             <p class="stat-label">faster at 2 vCPU, 1.5x at 4, for the Gym-App typecheck job</p>
-            <p>The question solci answers is whether your job is CPU-bound and which size is worth it. Cost only matters if you pay for minutes: at the private-repo rate, GitHub billed this job $0.010 per run (one minute, rounded up, plus the $0.002 platform fee) and 2 vCPU on Solari was $0.0012. Public repos are free on GitHub, so for those, read the time bars and ignore the dollars.</p>
+            <p>I use solci to check whether the job is CPU-bound and which size is worth it. At the private-repo rate, GitHub billed this job $0.010 per run (one minute, rounded up, plus the $0.002 platform fee) and 2 vCPU on Solari was $0.0012. GitHub minutes are free for my public repos, so I read the time bars and ignore the dollars. The cost column is there for people on private repos.</p>
             <div class="note-rule"></div>
-            <p class="note-small">That is the whole point of measuring the curve instead of guessing from a runner label.</p>
+            <p class="note-small">I measured the curve instead of guessing from a runner label.</p>
           </aside>
         </div>
 
@@ -157,17 +157,17 @@
       <section class="section-shell section-block inspired-section" id="inspired" aria-labelledby="inspired-title">
         <div class="section-heading split-heading reveal">
           <div><p class="eyebrow"><span class="eyebrow-mark">◎</span> 02 / AGENT MODE</p><h2 id="inspired-title">Agent mode</h2></div>
-          <p class="heading-aside">A measured workflow change, prepared for a human to review.</p>
+          <p class="heading-aside">A workflow change backed by measurements, ready for me to review.</p>
         </div>
-        <p class="agent-intro reveal"><code>solci agent owner/repo --job typecheck --cpu 1,2,4 --pr</code> measures on Solari, hands the evidence to a model, Codex by default and Gemini as fallback, then the model proposes the smallest workflow change justified by the numbers and opens a pull request with the report and chart. The human merges.</p>
+        <p class="agent-intro reveal">I built this agent to measure a job on Solari with <code>solci agent owner/repo --job typecheck --cpu 1,2,4 --pr</code>. It hands the evidence to Codex, with Gemini as fallback. The model proposes the smallest workflow change the numbers justify. It opens a pull request with the report and chart. It only edits the workflow file. It never merges. I merge the pull request.</p>
         <div class="agent-flow" role="list">
-          <article class="agent-step reveal" role="listitem"><div class="step-index">01</div><div class="step-icon">run</div><h3>measure</h3><p>Run the selected job at each requested vCPU size and capture timing, cost, and findings.</p></article>
-          <article class="agent-step agent-step-accent reveal" role="listitem"><div class="step-index">02</div><div class="step-icon">ask</div><h3>propose</h3><p>Give the evidence to Codex, with Gemini as fallback, and ask for the smallest justified workflow change.</p></article>
-          <article class="agent-step reveal" role="listitem"><div class="step-index">03</div><div class="step-icon">pr</div><h3>PR</h3><p>Open a pull request with the report and chart. It only edits the workflow file. It never merges.</p></article>
+          <article class="agent-step reveal" role="listitem"><div class="step-index">01</div><div class="step-icon">run</div><h3>measure</h3><p>solci runs the job at each requested vCPU size and records timing, cost, and findings.</p><code class="agent-step-evidence">67s / 48s / 45s at 1, 2, 4 vCPU</code></article>
+          <article class="agent-step agent-step-accent reveal" role="listitem"><div class="step-index">02</div><div class="step-icon">ask</div><h3>propose</h3><p>solci hands the evidence to Codex, with Gemini as fallback. The model proposes the smallest workflow change the numbers justify.</p><code class="agent-step-evidence">chose 2 vCPU, added timeout-minutes: 15 and a concurrency group</code></article>
+          <article class="agent-step reveal" role="listitem"><div class="step-index">03</div><div class="step-icon">pr</div><h3>PR</h3><p>It opens a pull request with the report and chart. It only edits the workflow file. It never merges. I do.</p><code class="agent-step-evidence">Gym-App PR #111, opened by solci, merge is my call</code></article>
         </div>
         <article class="agent-pr reveal" aria-label="Mock GitHub pull request">
-          <div class="agent-pr-header"><span class="agent-pr-open">Open</span><span>solci-bot opened this pull request</span></div>
-          <h3>ci.yml: bound typecheck and cancel superseded runs</h3>
+          <div class="agent-pr-header"><span class="agent-pr-open">Open</span><span>solci opened this pull request</span></div>
+          <h3><a href="https://github.com/moazessam376-dev/Gym-App/pull/111" target="_blank" rel="noreferrer">ci.yml: bound typecheck and cancel superseded runs</a></h3>
           <div class="agent-pr-meta">moazessam376-dev/Gym-App &middot; typecheck &middot; proposed change</div>
           <pre class="agent-pr-diff"><code><span class="diff-context">@@ workflow top level</span>
 <span class="diff-added">+concurrency:</span>
@@ -176,7 +176,7 @@
 <span class="diff-context"> jobs:</span>
 <span class="diff-context">   typecheck:</span>
 <span class="diff-added">+    timeout-minutes: 15</span></code></pre>
-          <p class="agent-pr-rationale">15 minutes is safely above the 58 second p90; cancel superseded runs given 35% historical failures</p>
+          <p class="agent-pr-rationale">15 minutes is safely above the 58 second p90. Superseded runs are cancelled given 35% historical failures.</p>
         </article>
       </section>
 
@@ -184,39 +184,39 @@
         <div class="section-heading reveal">
           <p class="eyebrow"><span class="eyebrow-mark">▸</span> 03 / THE RUNNER</p>
           <h2 id="pipeline-title">How it works</h2>
-          <p>The runner is a small sequence of decisions. Each one stays visible in the report.</p>
+          <p>This is what happens when I run one job. Every step shows up in the report.</p>
         </div>
         <div class="pipeline" role="list">
           <article class="pipeline-step reveal" role="listitem"><div class="step-index">01</div><div class="step-icon">gh</div><h3>fetch workflow via gh</h3><p>Read the workflow shape, job, runner label, history, and static findings.</p></article>
-          <article class="pipeline-step reveal" role="listitem"><div class="step-index">02</div><div class="step-icon">mx</div><h3>pick job and first matrix cell</h3><p>Choose one job and the first literal value for each matrix axis.</p></article>
-          <article class="pipeline-step reveal" role="listitem"><div class="step-index">03</div><div class="step-icon">vm</div><h3>boot a microVM per size</h3><p>1 s boot. vCPUs hot-plug in 1-15 s after boot, then the runner waits for cpu online.</p></article>
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">02</div><div class="step-icon">mx</div><h3>pick job and first matrix cell</h3><p>Pick one job and the first literal value for each matrix axis.</p></article>
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">03</div><div class="step-icon">vm</div><h3>boot a microVM per size</h3><p>Boot takes 1 s. vCPUs hot-plug in 1-15 s after boot, so the runner waits for cpu online.</p></article>
           <article class="pipeline-step reveal" role="listitem"><div class="step-index">04</div><div class="step-icon">sh</div><h3>clone + shims</h3><p>Clone into <code>/work/repo</code>. Shim setup-node, setup-python, uv, pnpm, and bun.</p></article>
-          <article class="pipeline-step reveal" role="listitem"><div class="step-index">05</div><div class="step-icon">noh</div><h3>run each step natively</h3><p>Use nohup plus log polling around the 28 s exec cap for long steps.</p></article>
-          <article class="pipeline-step reveal" role="listitem"><div class="step-index">06</div><div class="step-icon">out</div><h3>curve, recommendation, findings</h3><p>Write the evidence, then delete every sandbox when the run is done.</p></article>
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">05</div><div class="step-icon">noh</div><h3>run each step natively</h3><p>Long steps run under nohup with log polling, because exec is capped at 28 s.</p></article>
+          <article class="pipeline-step reveal" role="listitem"><div class="step-index">06</div><div class="step-icon">out</div><h3>curve, recommendation, findings</h3><p>Write the evidence, recommendation, and findings, then delete every sandbox.</p></article>
         </div>
       </section>
 
       <section class="section-shell section-block findings-section" id="findings" aria-labelledby="findings-title">
         <div class="section-heading split-heading reveal">
           <div><p class="eyebrow"><span class="eyebrow-mark">▤</span> 04 / STATIC CHECKS</p><h2 id="findings-title">Findings</h2></div>
-          <p class="heading-aside">Ten codes make the report useful before a run starts. Severity is a signal, not a verdict.</p>
+          <p class="heading-aside">Ten checks run before any sandbox boots. Severity is a hint about what to fix first.</p>
         </div>
         <div class="findings-grid">
-          <article class="finding-card reveal"><div><code>NO_CACHE_SETUP</code><span class="severity severity-medium">medium</span></div><p>A supported setup action does not enable dependency caching.</p></article>
+          <article class="finding-card reveal"><div><code>NO_CACHE_SETUP</code><span class="severity severity-medium">medium</span></div><p>A supported setup action has no dependency caching.</p></article>
           <article class="finding-card reveal"><div><code>UNPINNED_ACTION</code><span class="severity severity-low">low</span></div><p>An action uses a mutable or missing ref.</p></article>
           <article class="finding-card reveal"><div><code>NO_TIMEOUT</code><span class="severity severity-low">low</span></div><p>The job has no job-level timeout.</p></article>
-          <article class="finding-card reveal"><div><code>NO_CONCURRENCY</code><span class="severity severity-low">low</span></div><p>A pull-request workflow lacks a cancellation group.</p></article>
+          <article class="finding-card reveal"><div><code>NO_CONCURRENCY</code><span class="severity severity-low">low</span></div><p>A pull-request workflow has no cancellation group.</p></article>
           <article class="finding-card reveal"><div><code>FULL_CLONE</code><span class="severity severity-low">low</span></div><p>Checkout requests the complete repository history.</p></article>
-          <article class="finding-card reveal"><div><code>SLOW_INSTALL_HINT</code><span class="severity severity-info">info</span></div><p>pip install or non-lockfile npm install may be slower.</p></article>
+          <article class="finding-card reveal"><div><code>SLOW_INSTALL_HINT</code><span class="severity severity-info">info</span></div><p>pip install or npm install without a lockfile, which is slower.</p></article>
           <article class="finding-card reveal"><div><code>HIGH_FAILURE_RATE</code><span class="severity severity-high">high</span></div><p>The history baseline has a failure rate above 20%.</p></article>
           <article class="finding-card reveal"><div><code>BIG_RUNNER</code><span class="severity severity-medium">medium</span></div><p>The job requests a large cores or vcpu runner.</p></article>
-          <article class="finding-card reveal"><div><code>SERVICES_UNSUPPORTED</code><span class="severity severity-info">info</span></div><p>The job uses Docker or service containers unavailable in Solari.</p></article>
+          <article class="finding-card reveal"><div><code>SERVICES_UNSUPPORTED</code><span class="severity severity-info">info</span></div><p>The job uses Docker or service containers, which Solari does not have.</p></article>
           <article class="finding-card reveal"><div><code>MATRIX_NOTE</code><span class="severity severity-info">info</span></div><p>Only the first matrix cell was measured.</p></article>
         </div>
       </section>
 
       <section class="section-shell section-block learnings-section" id="learnings" aria-labelledby="learnings-title">
-        <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▮</span> 05 / FIELD NOTES</p><h2 id="learnings-title">What I learned about Solari</h2><p>These are the constraints that shaped the runner. They are also the reason the report stays plain about its limits.</p></div>
+        <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▮</span> 05 / FIELD NOTES</p><h2 id="learnings-title">What I learned about Solari</h2><p>These are the things I ran into while building the runner. They are also why the report is explicit about what it did not measure.</p></div>
         <div class="learning-grid">
           <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>cpu/memMb</code><p>honored up to 16 vCPU / 16 GB</p></article>
           <article class="learning-card reveal"><span class="terminal-prompt">$</span><code>nproc --wait</code><p>vCPUs hot-plug 1-15 s after boot</p></article>
@@ -232,7 +232,7 @@
       <section class="section-shell section-block lab-section" id="lab" aria-labelledby="lab-title">
         <div class="section-heading split-heading reveal">
           <div><p class="eyebrow"><span class="eyebrow-mark">▸</span> 06 / THE REST OF THE LAB</p><h2 id="lab-title">The rest of the lab</h2></div>
-          <p class="heading-aside">Two of these three Solari experiments are open source. The third is next up.</p>
+          <p class="heading-aside">All three are open source. I built the first two on the way to solci, and the third became a solci flag.</p>
         </div>
         <div class="lab-grid">
           <article class="lab-card reveal">
@@ -241,7 +241,7 @@
           </article>
           <article class="lab-card reveal">
             <div class="media-frame"><video autoplay muted loop playsinline preload="none" loading="lazy" poster="assets/demo-poster.jpg" aria-label="solari-browser-use browser automation demo"><source src="assets/demo.mp4" type="video/mp4"></video><span class="media-tag">demo.mp4</span></div>
-            <div class="lab-card-body"><div class="lab-card-top"><h3 class="lab-card-title">Cloud Chrome for browser jobs</h3><span class="private-tag next-tag">next up</span></div><p>Playwright and browser-use test jobs will run their browser on Solari cloud Chrome over CDP, with no change to the repo. solci injects the endpoint into the job. In progress.</p></div>
+            <div class="lab-card-body"><div class="lab-card-top"><h3 class="lab-card-title"><a href="https://github.com/moazessam376-dev/solari-ci#cloud-chrome-for-browser-jobs" target="_blank" rel="noreferrer">Cloud Chrome for browser jobs</a></h3><span class="private-tag open-tag">shipped</span></div><p>solci run --cloud-browser runs a job's Playwright, Puppeteer or browser-use steps in Solari cloud Chrome over CDP. No change to the repo. I injected the endpoint into the job. Two Playwright tests pass end to end, including one against the app's own localhost server through the sandbox preview URL. Chromium only for now.</p></div>
           </article>
           <article class="lab-card lab-card-no-media reveal">
             <div class="no-media-art" aria-hidden="true"><span>playtest</span><span>mcp / webgl / report</span></div>
@@ -253,7 +253,7 @@
       <section class="section-shell section-block install-section" id="install" aria-labelledby="install-title">
         <div class="install-layout">
           <div>
-            <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▸</span> 07 / GET STARTED</p><h2 id="install-title">Install</h2><p>Clone the repo, point it at your Solari and GitHub credentials, then ask one job for its curve.</p></div>
+            <div class="section-heading reveal"><p class="eyebrow"><span class="eyebrow-mark">▸</span> 07 / GET STARTED</p><h2 id="install-title">Install</h2><p>Clone the repo, add your Solari and GitHub credentials, then ask one job for its curve. Four commands.</p></div>
             <div class="command-list reveal">
               <div class="command-row"><code>git clone https://github.com/moazessam376-dev/solari-ci &amp;&amp; cd solari-ci &amp;&amp; uv pip install -e .</code><button class="copy-button" type="button" data-copy="git clone https://github.com/moazessam376-dev/solari-ci && cd solari-ci && uv pip install -e .">copy</button></div>
               <div class="command-row"><code>cp .env.example .env</code><button class="copy-button" type="button" data-copy="cp .env.example .env">copy</button></div>
@@ -263,13 +263,13 @@
               <div class="command-row command-row-run"><code>solci run owner/repo --job test --cpu 1,2,4,8</code><button class="copy-button" type="button" data-copy="solci run owner/repo --job test --cpu 1,2,4,8">copy</button></div>
             </div>
           </div>
-          <figure class="install-preview panel reveal"><div class="preview-label"><span>what it looks like</span><span>solci.gif</span></div><img src="assets/solci.gif" alt="Animated terminal output from solci showing a GitHub Actions job measurement"><figcaption>A report you can read in a terminal, Markdown, JSON, or a chart.</figcaption></figure>
+          <figure class="install-preview panel reveal"><div class="preview-label"><span>what it looks like</span><span>solci.gif</span></div><img src="assets/solci.gif" alt="Animated terminal output from solci showing a GitHub Actions job measurement"><figcaption>The report comes out as terminal text, Markdown, JSON, or a chart.</figcaption></figure>
         </div>
       </section>
     </main>
 
     <footer class="site-footer section-shell">
-      <p>Built for the Pinetree Research SWE intern challenge on Solari</p>
+      <p>Built by Moaz Essam for the Pinetree Research SWE intern challenge on Solari.</p>
       <div><a href="https://github.com/moazessam376-dev" target="_blank" rel="noreferrer">github.com/moazessam376-dev</a><span aria-hidden="true"> / </span><a href="https://www.getsolari.com" target="_blank" rel="noreferrer">getsolari.com</a></div>
     </footer>
   </body>
