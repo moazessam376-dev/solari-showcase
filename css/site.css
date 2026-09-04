@@ -1472,9 +1472,8 @@ h1 span {
 
 .install-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.72fr);
+  grid-template-columns: 1fr;
   gap: 56px;
-  align-items: center;
 }
 
 .install-layout .section-heading {
@@ -1542,7 +1541,10 @@ h1 span {
 }
 
 .install-preview {
-  padding: 17px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 21px 23px 22px;
 }
 
 .install-preview img {
